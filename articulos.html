@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello Electron</title>
+	<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet"/>
+	<link href="./css/application.css" media="all" rel="stylesheet"/>
+	<link href="./css/jquery.fancybox.css" media="all" rel="stylesheet"/>
+	<link href="./css/select2.css" media="all" rel="stylesheet"/>
+	<link href="./css/select2-bootstrap.css" media="all" rel="stylesheet"/>
+	<link href="./css/bootstrap.min.css" media="all" rel="stylesheet"/>
+	<link href="./css/fontawesome-all.min.css" media="all" rel="stylesheet"/>
+	<link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top" id="navbar">
+		<!-- Content will be inserted by jQuery from ./navbar.html -->
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="btn btn-lg btn-block btn-default" id="loader">
+					<i class="fas fa-spinner fa-pulse"></i> Cargando contenido...
+				</div>
+			</div>
+		</div>
+		<div id="hidden-items" style="display: none;">
+			<div class="page-title">
+				<h1> Artículos </h1>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="widget-container fluid-height clearfix">
+						<div class="heading">
+							<i class="fas fa-table"></i> Tabla de Artículos
+							<!-- Trigger the modal with a button -->
+							<a class="btn btn-primary-outline pull-right" data-toggle="modal" data-target="#modal_articulo"><i class="fas fa-plus-square"></i> Añadir artículo</a>
+						</div>
+						<!-- Modal -->
+						<div id="modal_articulo" class="modal fade" role="dialog">
+							<div class="modal-dialog" style="width: auto !important;">
+								<form class="" role="form">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+											<h4 class="modal-title">
+												Añadir artículo
+												<span class="label label-primary">1340</span>
+												<label class="checkbox-inline" for="chkVENDER_SIN_EXISTENCIA">
+													<input type="checkbox" name="chkVENDER_SIN_EXISTENCIA" id="chkVENDER_SIN_EXISTENCIA" checked><span>Vender sin existencia</span>
+												</label>
+												<label class="checkbox-inline" for="chkInventariable">
+													<input type="checkbox" name="chkInventariable" id="chkInventariable" checked><span>Inventariable</span>
+												</label>
+											</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-xs-12 col-sm-4 form-group">
+													<label for="label1">Nombre del Artículo</label>
+													<input class="form-control" name="label1" id="label1" placeholder="Nombre Auto-generado" type="text"/>
+												</div>
+												<div class="col-xs-12 col-sm-2 form-group">
+													<label for="radLabel13">Costo de Compra</label>
+													<div class="input-group">
+														<div class="input-group-addon">$</div>
+														<input class="form-control" name="radLabel13" id="radLabel13" value="0" type="text"/>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-2 form-group">
+													<label class="control-label" for="txtSerie">Serie</label>
+													<div class="input-group">
+														<label class="checkbox-inline input-group-addon" for="chkSerie">
+															<input type="checkbox" name="chkSerie" id="chkSerie" onchange="document.getElementById('txtSerie').disabled = !this.checked;" aria-label="..."><span></span>
+														</label>
+														<input name="txtSerie" id="txtSerie" class="form-control" type="text" disabled>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-2 form-group">
+													<label for="radLabel2">Clave 1</label>
+													<input class="form-control" name="radLabel2" id="radLabel2" type="text"/>
+												</div>
+												<div class="col-xs-12 col-sm-2 form-group">
+													<label for="radLabel20">Clave 2</label>
+													<input class="form-control" name="radLabel20" id="radLabel20" type="text"/>
+												</div>
+												<div class="col-xs-12 col-sm-12 form-group">
+													<label class="">Familia</label>
+													<select class="select2able">
+														<option value="RECARGA">RECARGA</option>
+														<option value="TONER">TONER</option>
+														<option value="TINTA">TINTA</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-lg-3">Multi-Select2</label>
+													<div class="col-lg-9">
+														<select class="select2able" multiple="">
+															<option value="Category 1">Option 1</option>
+															<option value="Category 2">Option 2</option>
+															<option value="Category 3">Option 3</option>
+															<option value="Category 4">Option 4</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-primary" type="submit">Guardar Cambios</button>
+											<button class="btn btn-default-outline" data-dismiss="modal" type="button">Cerrar</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="widget-content padded clearfix">
+							<div class="table-responsive">
+								<table id="dataTable_articulo" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th> Clave </th>
+											<th> Nombre del Artículo </th>
+											<th> Costo </th>
+											<th> Precio1 </th>
+											<th> Precio2 </th>
+											<th> Precio3 </th>
+											<th> Precio4 </th>
+											<th> Precio5 </th>
+											<th> Precio6 </th>
+											<th> Precio7 </th>
+											<th> Precio8 </th>
+											<th> PrecioE </th>
+											<th> Familia </th>
+											<th class="hidden-xs"> Reynosa </th>
+											<th class="hidden-xs"> Río Bravo </th>
+											<th class="hidden-xs"> Matamoros </th>
+											<th> Proveedor </th>
+											<th> Fecha Registro </th>
+											<th> Último Movimiento </th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="tablaarticulosbody">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script> window.$ = window.jQuery = require('./js/jquery-1.12.4.min.js'); </script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/jquery.classyscroll.js"></script>
+	<script src="./js/jquery.dataTables.min.js"></script>
+	<script src="./js/dataTables.bootstrap.min.js"></script>
+	<script src="./js/jquery.fancybox.pack.js"></script>
+	<script src="./js/select2.js"></script>
+	<script src="./js/styleswitcher.js"></script>
+	<script src="./script/main.js" ></script>
+	<script> require('./articulos.js') </script>
+</body>
+</html>
