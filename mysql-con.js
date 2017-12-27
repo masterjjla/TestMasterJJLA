@@ -9,9 +9,9 @@ MySQLConnection.connect = function(){
     var d = q.defer();
     MySQLConnection.connection = mysql.createConnection({
         host                : '192.168.1.101',
-        user                : 'sa',
-        password            : 'AbC123*-',
-        database            : 'posmercado'
+        user                : '...',
+        password            : '...',
+        database            : '...'
     });
 
     MySQLConnection.connection.connect(function (err) {
